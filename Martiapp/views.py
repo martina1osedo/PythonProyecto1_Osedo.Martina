@@ -1,6 +1,7 @@
 from django.shortcuts import render
+from .models import Post 
 
-# Create your views here.
-def index(request):
-    context = {"mensaje": "Bienvenidos a mi aplicacion Django"}
-    return render(request, "Martiapp/index.html", context)
+
+def index2(request):
+    index2 = Post.objects.all()
+    return render(request, 'Martiapp/index2.html', context={"posts": index2})

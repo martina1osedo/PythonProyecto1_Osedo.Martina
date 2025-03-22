@@ -1,0 +1,22 @@
+{% extends "Home/base.html" %}
+
+{% block title %}
+   Publicaciones
+{% endblock title %}
+{%block content_title %}
+   Lista de Publicaciones
+{% endblock content_title%}
+
+{%block content%}
+  <ul class= "list-group">
+    {% for post in posts %}
+    <a href="#" class="list-group-item list-group-item-action">
+        <div class="d-flex w-100 justtify-content-between">
+            <h5 class="mb-1">{{ post.titulo }}</h5>
+            <small>Publicado el {{ post.fecha_publicacion }}</small>
+        </div>
+        <p class="mb-1">{{ post.contenido }}</p>
+    </a>
+    {% endfor %}
+ </ul>
+{%endblock content%}
