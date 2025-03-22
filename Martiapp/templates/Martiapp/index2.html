@@ -8,15 +8,42 @@
 {% endblock content_title%}
 
 {%block content%}
-  <ul class= "list-group">
-    {% for post in posts %}
-    <a href="#" class="list-group-item list-group-item-action">
-        <div class="d-flex w-100 justtify-content-between">
-            <h5 class="mb-1">{{ post.titulo }}</h5>
-            <small>Publicado el {{ post.fecha_publicacion }}</small>
-        </div>
-        <p class="mb-1">{{ post.contenido }}</p>
-    </a>
-    {% endfor %}
- </ul>
+   <a href="{% url 'Martiapp:index2' %}" class="btn btn-primary mb-3">crear publicacion</a>
+
+   <form action="{% urls 'Martiapp:index2' %}" method="get">
+       <input type="text" name="busqueda" placeholder="Buscar..." type="submit"
+       class="form-control mb-3">
+   </form>
+
+   <div class="table-responsive">
+      <table class="table table-borderd">
+         <thead>
+            <tr>
+               <th>Titulo</th>
+               <th>Autor</th>
+               <th>Fecha de publicacion</th>
+               <th>Estado</th>
+            </tr>
+         </thead>
+         <tbody>
+            {% for post in posts %}
+            <tr>
+               <td>{{ post.titulo }}</td>
+               <td>{{ post.autor }}</td>
+               <td>{{ post.fecha_publicacion }}</td>
+               {% if post.estado == "B %}
+                  <td>Borrador</td> 
+               {% else %}
+                  <td><strong>Publicado</strong></td>
+               {% endif %}
+               <td>
+                   <a href="#" class="btn btn-sm btn-info">Detalle</a>
+                   <a href="#" class="btn btn-sm btn-warning">cambiar</a>
+                   <a href="#" class="btn btn-sm brn-danger">Eliminar</a>
+               </td>
+            </tr>
+            {% endfor %}
+         </tbody>
+      </table>
+   </div>                     
 {%endblock content%}
